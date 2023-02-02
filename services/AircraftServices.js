@@ -1,14 +1,9 @@
 const Aircraft = require("../models/Aircraft");
-//import uniqueRandom from 'unique-random';
-const uniqueRandom = require('unique-random');
-
-const random = uniqueRandom(10, 100);
-
 module.exports = class AircraftServices {
   static async createAircraft(data) {
     try {
       const newAircraft = {
-        sjac_code: random(),
+        sjac_code: data.sjac_code,
         manufacturer: data.manufacturer,
         model: data.model,
         classification: data.classification,

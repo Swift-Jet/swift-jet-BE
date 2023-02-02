@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const AircraftServices = require("../../../services/AircraftServices")
+const AircraftServices = require("../../../services/AircraftServices");
 const { successResponse, errorResponse } = require("../../../utils/responses");
 
 module.exports = class AircraftController {
@@ -53,7 +52,11 @@ module.exports = class AircraftController {
       if (!overview_summary || overview_summary === "") {
         return errorResponse(res, 400, "Please enter airport overview_summary");
       }
-
+      const characters = "0123456789";
+      let sjac_code = "SJAC-";
+      for (let i = 0; i < 5; i++) {
+        sjac_code += characters[Math.floor(Math.random()* 5)];
+      }
       const newAircraft = {
         manufacturer,
         model,
@@ -65,6 +68,7 @@ module.exports = class AircraftController {
         interior_height,
         interior_width,
         overview_summary,
+        sjac_code,
         image_url,
         image_url_2,
         image_url_3,
@@ -74,6 +78,7 @@ module.exports = class AircraftController {
       const response = await AircraftServices.createAircraft(newAircraft);
       return successResponse(res, 201, "Added aircraft successfully");
     } catch (error) {
+      console.log(error);
       return errorResponse(res, 500, "Server Error");
     }
   }

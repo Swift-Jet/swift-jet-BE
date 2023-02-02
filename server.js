@@ -20,9 +20,13 @@ app.get("/", (req, res) => {
 
 const airport = require("./routes/api/v1/airport");
 const aircraft = require("./routes/api/v1/aircraft");
+const user = require("./routes/api/v1/user");
+const admin = require("./routes/api/v1/admin")
 
 app.use("/api/v1/airport", airport);
-app.use("/api/v1/aircraft", aircraft)
+app.use("/api/v1/aircraft", aircraft);
+app.use("/api/v1/user", user);
+app.use("/api/v1/admin", admin);
 const PORT = process.env.PORT || 8000;
 
 server.listen(PORT, () => {
