@@ -102,9 +102,10 @@ module.exports = class UserController {
         last_name: user.last_name,
         email: user.email,
       };
+      res.cookie('token', token, { httpOnly: true });
       return successResponse(res, 200, "Login successful", payload);
     } catch (error) {
-      console.log(error);
+    
       return errorResponse(res, 500, "Server Error");
     }
   }

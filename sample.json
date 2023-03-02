@@ -1,0 +1,32 @@
+{
+    "id": "104093553201702468042",
+    "displayName": "Babajide Ojo",
+    "name": {
+        "familyName": "Ojo",
+        "givenName": "Babajide"
+    },
+    "emails": [
+        {
+            "value": "ojobabajide629@gmail.com",
+            "verified": true
+        }
+    ],
+    "photos": [
+        {
+            "value": "https://lh3.googleusercontent.com/a/AGNmyxYsVmC5_kINva-8I5r9yh1G2RCCW9IuYR1YzThtbQ=s96-c"
+        }
+    ],
+    "provider": "google",
+    "_raw": "{\n  \"sub\": \"104093553201702468042\",\n  \"name\": \"Babajide Ojo\",\n  \"given_name\": \"Babajide\",\n  \"family_name\": \"Ojo\",\n  \"picture\": \"https://lh3.googleusercontent.com/a/AGNmyxYsVmC5_kINva-8I5r9yh1G2RCCW9IuYR1YzThtbQ\\u003ds96-c\",\n  \"email\": \"ojobabajide629@gmail.com\",\n  \"email_verified\": true,\n  \"locale\": \"en-GB\"\n}",
+    "_json": {
+        "sub": "104093553201702468042",
+        "name": "Babajide Ojo",
+        "given_name": "Babajide",
+        "family_name": "Ojo",
+        "picture": "https://lh3.googleusercontent.com/a/AGNmyxYsVmC5_kINva-8I5r9yh1G2RCCW9IuYR1YzThtbQ=s96-c",
+        "email": "ojobabajide629@gmail.com",
+        "email_verified": true,
+        "locale": "en-GB"
+    }
+}
+

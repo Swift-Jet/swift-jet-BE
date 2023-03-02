@@ -76,6 +76,7 @@ module.exports = class AircraftController {
         image_url_5
       };
       const response = await AircraftServices.createAircraft(newAircraft);
+
       return successResponse(res, 201, "Added aircraft successfully");
     } catch (error) {
       console.log(error);
@@ -85,6 +86,8 @@ module.exports = class AircraftController {
 
   static async getAircrafts(req, res) {
     try {
+      const token = req.cookies.token;
+    
       const response = await AircraftServices.getAircrafts();
       return successResponse(res, 200, "Aircrafts fetched", response);
     } catch (error) {
