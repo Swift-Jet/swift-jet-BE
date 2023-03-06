@@ -4,13 +4,13 @@ mongoose.set('strictQuery', true);
 // connect to db based on environment
 module.exports.connectDB = async () => {
   if (process.env.NODE_ENV === "development") {
-    mongoose.connect(process.env.MONGO_URI, {
+    mongoose.connect("mongodb+srv://Babajide:Maythird1.!@cluster0.azxmr.mongodb.net/swift-jet-staging-db?retryWrites=true&w=majority", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
     console.log(`MongoDB Connected`.cyan.underline.bold);
   } else if (process.env.NODE_ENV === "production") {
-    mongoose.connect(process.env.MONGO_URI, {
+    mongoose.connect("mongodb+srv://Babajide:Maythird1.!@cluster0.azxmr.mongodb.net/swift-jet-staging-db?retryWrites=true&w=majority", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
