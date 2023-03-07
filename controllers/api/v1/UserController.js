@@ -65,6 +65,7 @@ module.exports = class UserController {
 
   static async login(req, res) {
     const { email, password } = req.body;
+    console.log(email);
     try {
       if (!email || email === "") {
         return errorResponse(res, 400, "Please enter your email");
@@ -80,15 +81,6 @@ module.exports = class UserController {
         return errorResponse(res, 401, "Incorrect email or password");
       }
 
-      // const isMatch = await user.matchPassword(password);
-      // console.log("isMatch", isMatch);
-      // if (!isMatch) {
-      //   return errorResponse(res, 401, "Incorrect password");
-      // }
-
-      // if (user.status === "pending") {
-      //   return errorResponse(res, 400, "Please verify your email address.");
-      // }
 
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
@@ -102,10 +94,10 @@ module.exports = class UserController {
         last_name: user.last_name,
         email: user.email,
       };
-      res.cookie('token', token, { httpOnly: true });
+    //  res.cookie('token', token, { httpOnly: true });
       return successResponse(res, 200, "Login successful", payload);
     } catch (error) {
-    
+    console.log(error);
       return errorResponse(res, 500, "Server Error");
     }
   }

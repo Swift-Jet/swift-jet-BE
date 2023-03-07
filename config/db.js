@@ -16,10 +16,11 @@ module.exports.connectDB = async () => {
     });
     console.log(`Prod MongoDB Connected`.blue.underline.bold);
   } else {
-    mongoose.connect(process.env.MONGO_TEST_URI, {
+    mongoose.connect("mongodb+srv://Babajide:Maythird1.!@cluster0.azxmr.mongodb.net/swift-jet-staging-db?retryWrites=true&w=majority", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
+    console.log(`MongoDB Connected`.cyan.underline.bold);
   }
 };
 

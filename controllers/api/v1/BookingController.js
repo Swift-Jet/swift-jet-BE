@@ -6,30 +6,36 @@ module.exports = class AirportController {
   static async addBooking(req, res) {
     const {
       user,
-      phone_number,
       booking_details,
       additional_quote,
+      status
     } = req.body;
 
     try {
-      if (!user || user === []) {
+      if (!user || user === {}) {
         return errorResponse(res, 400, "User details can not be empty");
       }
-      if (!phone_number || phone_number === "") {
-        return errorResponse(res, 400, "Please enter phone number");
+      if (!status || status === "") {
+        return errorResponse(res, 400, "Status can not be empty");
       }
       if (!booking_details || booking_details === []) {
         return errorResponse(res, 400, "Booking details can not be emptyn");
-      } 
+      }
+      const characters = "0123456789";
+      let code = "SW";
+      for (let i = 0; i < 9; i++) {
+        code += characters[Math.floor(Math.random() * 5)];
+      }
 
       const newBooking = {
         user,
-        phone_number,
+        booking_number: code,
         booking_details,
         additional_quote,
+        status
       };
       const response = await BookingServices.createBooking(newBooking);
-      return successResponse(res, 201, "Booking created successfully");
+      return successResponse(res, 201, "Booking created successfully", response);
     } catch (error) {
       return errorResponse(res, 500, "Server Error");
     }
