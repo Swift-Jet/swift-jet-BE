@@ -63,40 +63,40 @@ passport.deserializeUser(function (obj, cb) {
   cb(null, obj);
 });
 
-/*  Google AUTH  */
+// /*  Google AUTH  */
 
-const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
-const GOOGLE_CLIENT_ID =
-  "868391289862-6en8s0um5rppi9evr8oafmsu81mmd09s.apps.googleusercontent.com";
-const GOOGLE_CLIENT_SECRET = "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";
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: GOOGLE_CLIENT_ID,
-      clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:8000/auth/google/callback",
-    },
-    function (accessToken, refreshToken, profile, done) {
-      userProfile = profile;
-      return done(null, userProfile);
-    }
-  )
-);
+// const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+// const GOOGLE_CLIENT_ID =
+//   "868391289862-6en8s0um5rppi9evr8oafmsu81mmd09s.apps.googleusercontent.com";
+// const GOOGLE_CLIENT_SECRET = "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";
+// passport.use(
+//   new GoogleStrategy(
+//     {
+//       clientID: GOOGLE_CLIENT_ID,
+//       clientSecret: GOOGLE_CLIENT_SECRET,
+//       callbackURL: "http://localhost:8000/auth/google/callback",
+//     },
+//     function (accessToken, refreshToken, profile, done) {
+//       userProfile = profile;
+//       return done(null, userProfile);
+//     }
+//   )
+// );
 
-app.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
-);
+// app.get(
+//   "/auth/google",
+//   passport.authenticate("google", { scope: ["profile", "email"] })
+// );
 
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/error" }),
-  function (req, res) {
-    // Successful authentication, redirect success.
-    console.log(res);
-    res.redirect("/success");
-  }
-);
+// app.get(
+//   "/auth/google/callback",
+//   passport.authenticate("google", { failureRedirect: "/error" }),
+//   function (req, res) {
+//     // Successful authentication, redirect success.
+//     console.log(res);
+//     res.redirect("/success");
+//   }
+// );
 
 // route for logging out
 app.get("/logout", function (req, res, next) {
