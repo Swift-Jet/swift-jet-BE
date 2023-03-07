@@ -5,9 +5,10 @@ module.exports = class AirportServices {
     try {
       const newBooking = {
         user: data.user,
-        phone_number: data.phone_number,
+        booking_number: data.booking_number,
         booking_details: data.booking_details,
-        additional_quote: data.additional_quote
+        additional_quote: data.additional_quote,
+        status: data.status,
       };
       const response = await new Booking(newBooking).save();
       return response;
@@ -15,7 +16,6 @@ module.exports = class AirportServices {
       return error;
     }
   }
-
 
   static async getBookings() {
     try {

@@ -34,6 +34,7 @@ module.exports = class AirportController {
         additional_quote,
         status
       };
+      console.log(newBooking);
       const response = await BookingServices.createBooking(newBooking);
       return successResponse(res, 201, "Booking created successfully", response);
     } catch (error) {
