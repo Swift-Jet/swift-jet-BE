@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const BookingServices = require("../../../services/BookingServices");
 const { successResponse, errorResponse } = require("../../../utils/responses");
 
@@ -8,7 +7,8 @@ module.exports = class AirportController {
       user,
       booking_details,
       additional_quote,
-      status
+      status, 
+      email
     } = req.body;
 
     try {
@@ -28,6 +28,7 @@ module.exports = class AirportController {
       }
 
       const newBooking = {
+        email,
         user,
         booking_number: code,
         booking_details,
@@ -46,6 +47,17 @@ module.exports = class AirportController {
     try {
       const response = await BookingServices.getBookings();
       return successResponse(res, 200, "Bookings fetched", response);
+    } catch (error) {
+      return errorResponse(res, 500, "Server Error");
+    }
+  }
+
+  static async getBookingByEmail(req, res) {
+    try {
+      console.log(req.query.email);
+      const email = req.query.email;
+      const response = await BookingServices.getBookingByEmail(email);
+      return successResponse(res, 200, "User Bookings fetched", response);
     } catch (error) {
       return errorResponse(res, 500, "Server Error");
     }

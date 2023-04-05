@@ -4,5 +4,6 @@ const BookingController = require("../../../controllers/api/v1/BookingController
 
 router.post("/add", BookingController.addBooking);
 router.get("/all", BookingController.getBookings)
+router.get("/single", BookingController.getBookingByEmail)
 
 module.exports = router;  

@@ -12,7 +12,8 @@ const airport = require("./routes/api/v1/airport");
 const aircraft = require("./routes/api/v1/aircraft");
 const user = require("./routes/api/v1/user");
 const admin = require("./routes/api/v1/admin");
-const booking = require("./routes/api/v1/booking");
+const booking = require("./routes/api/v1/booking"); 
+const flight = require("./routes/api/v1/flight");
 var userProfile;
 
 const csrfProtection = csrf({
@@ -113,6 +114,7 @@ app.use("/api/v1/aircraft", aircraft);
 app.use("/api/v1/user", user);
 app.use("/api/v1/admin", admin);
 app.use("/api/v1/booking", booking);
+app.use("/api/v1/flight", flight);
 const PORT = process.env.PORT || 8000;
 
 server.listen(PORT, () => {

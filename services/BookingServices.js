@@ -5,6 +5,7 @@ module.exports = class AirportServices {
     try {
       const newBooking = {
         user: data.user,
+        email: data.email,
         booking_number: data.booking_number,
         booking_details: data.booking_details,
         additional_quote: data.additional_quote,
@@ -20,6 +21,16 @@ module.exports = class AirportServices {
   static async getBookings() {
     try {
       const response = await Booking.find();
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  static async getBookingByEmail(email) {
+    try {
+      const query = { email: email };      
+      const response = await Booking.find(query);
       return response;
     } catch (error) {
       return error;

@@ -11,6 +11,9 @@ const BookingSchema = new mongoose.Schema({
   user: {
     type: Object,
   },
+  email: {
+    type: String
+  },
   booking_details: {
     type: Object,
   },

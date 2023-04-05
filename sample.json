@@ -1,32 +1,64 @@
 {
-    "id": "104093553201702468042",
-    "displayName": "Babajide Ojo",
-    "name": {
-        "familyName": "Ojo",
-        "givenName": "Babajide"
+    "user": {
+        "first_name": "Ojo",
+        "last_name": "Babajide",
+        "email": "babajide.ojo@konga.com"
     },
-    "emails": [
+    "email": "babajide.ojo@konga.com",
+    "phone_number": "09078654321",
+    "status": "New",
+    "booking_details": {
+        "tripType": "One way Trip",
+        "sourceAirport": "Seattle-Tacoma International Airport",
+        "destinationAirport": "Cancun International Airport",
+        "sourceAirportCode": "KSEA",
+        "destinationAirportCode": "MMUN",
+        "passengers": "3",
+        "depatureDate": "2023-04-09",
+        "returningDate": "",
+        "depatureTime": "12:00",
+        "returningTime": ""
+    },
+    "additional_quote": [
         {
-            "value": "ojobabajide629@gmail.com",
-            "verified": true
-        }
-    ],
-    "photos": [
+            "_id": "63f124c3cbef5dd91b0a851b",
+            "sjac_code": "SJAC-21021",
+            "manufacturer": "Turboprop ",
+            "model": "Beech BE200 Super King Air",
+            "classification": "Mid-size Jets",
+            "no_of_seats": "7",
+            "speed": "579 ",
+            "range": "579 ",
+            "luggage_capacity": "59",
+            "interior_height": "2.05",
+            "interior_width": "1.47",
+            "overview_summary": "Midsize jets (also known as mid-sized jets) are the most popular category of private jets and provide a cost-effective option for flights of up to 4 hours, for up to 8 passengers",
+            "image_url": "https://res.cloudinary.com/dzv98o7ds/image/upload/v1676747970/switf_jet_dev_staging/ccnmb0nty3zzbfg29jlu.avif",
+            "image_url_2": "https://res.cloudinary.com/dzv98o7ds/image/upload/v1676747970/switf_jet_dev_staging/dczj09iicx52cp7pyb0n.avif",
+            "image_url_3": "https://res.cloudinary.com/dzv98o7ds/image/upload/v1676747970/switf_jet_dev_staging/ghfdfteimwldft7hv7bv.avif",
+            "image_url_4": "https://res.cloudinary.com/dzv98o7ds/image/upload/v1676747970/switf_jet_dev_staging/y3jigyyppvklklzv57zn.avif",
+            "image_url_5": "https://res.cloudinary.com/dzv98o7ds/image/upload/v1676747970/switf_jet_dev_staging/g58das5afu3gcli8b2sp.avif",
+            "__v": 0
+        },
         {
-            "value": "https://lh3.googleusercontent.com/a/AGNmyxYsVmC5_kINva-8I5r9yh1G2RCCW9IuYR1YzThtbQ=s96-c"
+            "_id": "63f124cdcbef5dd91b0a851d",
+            "sjac_code": "SJAC-14034",
+            "manufacturer": "Turboprop ",
+            "model": "Beech BE200 Super King Air",
+            "classification": "Mid-size Jets",
+            "no_of_seats": "7",
+            "speed": "579 ",
+            "range": "579 ",
+            "luggage_capacity": "59",
+            "interior_height": "2.05",
+            "interior_width": "1.47",
+            "overview_summary": "Midsize jets (also known as mid-sized jets) are the most popular category of private jets and provide a cost-effective option for flights of up to 4 hours, for up to 8 passengers",
+            "image_url": "https://res.cloudinary.com/dzv98o7ds/image/upload/v1676747981/switf_jet_dev_staging/xc2kde78dtvzw2kqzhe2.avif",
+            "image_url_2": "https://res.cloudinary.com/dzv98o7ds/image/upload/v1676747981/switf_jet_dev_staging/otdsjwfzwuw96lmk1ddw.avif",
+            "image_url_3": "https://res.cloudinary.com/dzv98o7ds/image/upload/v1676747981/switf_jet_dev_staging/otjv4vvzrbdqwifovtei.avif",
+            "image_url_4": "https://res.cloudinary.com/dzv98o7ds/image/upload/v1676747981/switf_jet_dev_staging/f4ruv6ttwmszryoe40av.avif",
+            "image_url_5": "https://res.cloudinary.com/dzv98o7ds/image/upload/v1676747981/switf_jet_dev_staging/gacyaqmue9jh8y9rbd8x.avif",
+            "__v": 0
         }
-    ],
-    "provider": "google",
-    "_raw": "{\n  \"sub\": \"104093553201702468042\",\n  \"name\": \"Babajide Ojo\",\n  \"given_name\": \"Babajide\",\n  \"family_name\": \"Ojo\",\n  \"picture\": \"https://lh3.googleusercontent.com/a/AGNmyxYsVmC5_kINva-8I5r9yh1G2RCCW9IuYR1YzThtbQ\\u003ds96-c\",\n  \"email\": \"ojobabajide629@gmail.com\",\n  \"email_verified\": true,\n  \"locale\": \"en-GB\"\n}",
-    "_json": {
-        "sub": "104093553201702468042",
-        "name": "Babajide Ojo",
-        "given_name": "Babajide",
-        "family_name": "Ojo",
-        "picture": "https://lh3.googleusercontent.com/a/AGNmyxYsVmC5_kINva-8I5r9yh1G2RCCW9IuYR1YzThtbQ=s96-c",
-        "email": "ojobabajide629@gmail.com",
-        "email_verified": true,
-        "locale": "en-GB"
-    }
+    ]
 }
-

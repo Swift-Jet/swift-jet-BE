@@ -1,0 +1,60 @@
+{
+    "creator": {
+        "location_id": 772
+    },
+    "location_id": 772,
+    "shipper": {
+        "firstname": "abon ayodeji",
+        "lastname": "abon ayodeji",
+        "lga": "772",
+        "street": "Oshineye St, Pedro 102216, Lagos, Nigeria",
+        "city": "Shomolu",
+        "telephone": "09132569746",
+        "state": "1061493610",
+        "email": "bosco@gmail.com",
+        "shop_name": "abon ayodeji"
+    },
+    "receiver": {
+        "firstname": "jesu",
+        "lastname": "yomi",
+        "lga": "761",
+        "street": "Kafayat Abdulrasaq Street, Lekki Phase I 106104, Lagos, Nigeria",
+        "city": "Eti Osa",
+        "telephone": "08023150175",
+        "state": "1061493610",
+        "email": "jesu@yahoo.com",
+        "name": "jesu yomi"
+    },
+    "packages": [
+        {
+            "package_weight": 1.2,
+            "package_number": "PKG-5885",
+            "items": [
+                {
+                    "name": "Phone X30",
+                    "qty_ordered": 2,
+                    "price": 200
+                },
+                {
+                    "name": "Phone X30",
+                    "qty_ordered": 2,
+                    "price": 200
+                }
+            ]
+        }
+    ],
+    "items": [
+        {
+            "name": "Phone X30",
+            "qty_ordered": 2,
+            "price": 200
+        },
+        {
+            "name": "Phone X30",
+                    "qty_ordered": 2,
+                    "price": 200
+        }
+    ],
+    "weight": 1.2,
+    "pieces": 2
+}
