@@ -1,15 +1,10 @@
 const BookingServices = require("../../../services/BookingServices");
+const nodemail = require("./../../../config/nodemailer");
 const { successResponse, errorResponse } = require("../../../utils/responses");
 
 module.exports = class AirportController {
   static async addBooking(req, res) {
-    const {
-      user,
-      booking_details,
-      additional_quote,
-      status, 
-      email
-    } = req.body;
+    const { user, booking_details, additional_quote, status, email } = req.body;
 
     try {
       if (!user || user === {}) {
@@ -33,11 +28,17 @@ module.exports = class AirportController {
         booking_number: code,
         booking_details,
         additional_quote,
-        status
+        status,
       };
       console.log(newBooking);
       const response = await BookingServices.createBooking(newBooking);
-      return successResponse(res, 201, "Booking created successfully", response);
+      nodemail.bookingRecievedEmail(newBooking.user.email, newBooking.booking_number, newBooking.user.first_name);
+      return successResponse(
+        res,
+        201,
+        "Booking created successfully",
+        response
+      );
     } catch (error) {
       return errorResponse(res, 500, "Server Error");
     }
@@ -46,6 +47,7 @@ module.exports = class AirportController {
   static async getBookings(req, res) {
     try {
       const response = await BookingServices.getBookings();
+
       return successResponse(res, 200, "Bookings fetched", response);
     } catch (error) {
       return errorResponse(res, 500, "Server Error");
@@ -58,6 +60,17 @@ module.exports = class AirportController {
       const email = req.query.email;
       const response = await BookingServices.getBookingByEmail(email);
       return successResponse(res, 200, "User Bookings fetched", response);
+    } catch (error) {
+      return errorResponse(res, 500, "Server Error");
+    }
+  }
+
+  static async trackBooking(req, res) {
+    try {
+      console.log(req.query.booking_number);
+      const booking_number = req.query.booking_number;
+      const response = await BookingServices.trackBooking(booking_number);
+      return successResponse(res, 200, "Tracking details fetched", response);
     } catch (error) {
       return errorResponse(res, 500, "Server Error");
     }

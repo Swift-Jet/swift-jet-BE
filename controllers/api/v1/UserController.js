@@ -1,5 +1,6 @@
 const UserServices = require("../../../services/UserServices");
 const { successResponse, errorResponse } = require("../../../utils/responses");
+const nodemail = require('./../../../config/nodemailer')
 const bcrypt = require("bcryptjs");
 module.exports = class UserController {
   static async signUp(req, res) {
@@ -42,13 +43,20 @@ module.exports = class UserController {
         password,
         confirmationCode,
       };
+   
       const response = await UserServices.signUp(newUser);
+      console.log("newUser", response);
       if(response?.errors){
         return errorResponse(res, 500, "An error occured", response);
       }
-      
+      nodemail.sendConfirmationEmail(
+        newUser.first_name,
+        newUser.email,
+        newUser.confirmationCode,
+      )
       return successResponse(res, 201, "User account created", response);
     } catch (error) {
+      console.log(error);
       return errorResponse(res, 500, "Server Error");
     }
   }

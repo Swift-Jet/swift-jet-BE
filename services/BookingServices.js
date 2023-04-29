@@ -36,4 +36,18 @@ module.exports = class AirportServices {
       return error;
     }
   }
+
+  static async trackBooking(booking_number) {
+    try {
+      const query = { booking_number: booking_number };      
+      const response = await Booking.find(query);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  static async updateBooking() {
+    
+  }
 };
