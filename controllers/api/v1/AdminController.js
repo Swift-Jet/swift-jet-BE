@@ -60,6 +60,15 @@ module.exports = class AdminController {
     }
   }
 
+  static async getDasboardSummary(req, res) {
+    try {
+      const response = await AdminServices.getDashboardSummary();
+      return successResponse(res, 200, "Summary fetched", response);
+    } catch (error) {
+      return errorResponse(res, 500, "Server Error");
+    }
+  }
+
   static async login(req, res) {
     const { email, password } = req.body;
     try {

@@ -1,4 +1,9 @@
-const Admin = require("../models/Admin")
+const Admin = require("../models/Admin");
+const User = require("../models/User");
+const Flight = require("../models/Flight");
+const Booking = require("../models/Booking");
+const Aircraft = require("../models/Aircraft")
+
 module.exports = class AdminServices {
   static async addAdmin(data) {
     try {
@@ -22,6 +27,31 @@ module.exports = class AdminServices {
         "_id email last_name first_name"
       );
       return response;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  static async getDashboardSummary() {
+    const flights = await Flight.find();
+    const bookings = await Booking.find();
+    const users = await User.find();
+    const admins = await Admin.find();
+    const aircrafts = await Aircraft.find();
+    try {
+      const data = {
+        flights: flights,
+        bookings: bookings,
+        users: users,
+        admins: admins,
+        aircrafts: aircrafts,
+        flight_total: flights.length,
+        bookings_total: bookings.length,
+        users_total: users.length,
+        admins_total: admins.length,
+        aircrafts_total: aircrafts.length
+      };
+      return data;
     } catch (error) {
       return error;
     }
