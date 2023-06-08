@@ -69,6 +69,17 @@ module.exports = class AdminController {
     }
   }
 
+  static async getSingleBooking(req, res) {
+    try {
+      console.log("req.query.booking_number",req.query.booking_number);
+      const booking_number = req.query.booking_number;
+      const response = await AdminServices.getSingleBooking(booking_number);
+      return successResponse(res, 200, "Bookings Details fetched", response);
+    } catch (error) {
+      return errorResponse(res, 500, "Server Error");
+    }
+  }
+
   static async login(req, res) {
     const { email, password } = req.body;
     try {
@@ -85,16 +96,6 @@ module.exports = class AdminController {
       if (!user) {
         return errorResponse(res, 401, "Incorrect email or password");
       }
-
-      // const isMatch = await user.matchPassword(password);
-      // console.log("isMatch", isMatch);
-      // if (!isMatch) {
-      //   return errorResponse(res, 401, "Incorrect password");
-      // }
-
-      // if (user.status === "pending") {
-      //   return errorResponse(res, 400, "Please verify your email address.");
-      // }
 
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {

@@ -5,7 +5,6 @@ const AdminController = require("../../../controllers/api/v1/AdminController")
 
 router.post("/add", AdminController.addAdmin);
 router.get("/summary", AdminController.getDasboardSummary);
-// router.get("/all", AdminController.g);
-// router.post("/login", AdminController.login);
+router.get("/single", AdminController.getSingleBooking)
 
 module.exports = router;  

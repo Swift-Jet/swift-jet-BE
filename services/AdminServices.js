@@ -57,10 +57,10 @@ module.exports = class AdminServices {
     }
   }
 
-  static async getAdminByEmail(user_email) {
+  static async getSingleBooking(booking_number) {
     try {
-      const singleAdmin = await Admin.findOne({ email: user_email });
-      return singleAdmin;
+      const singleBooking = await Booking.findOne({ booking_number: booking_number });
+      return singleBooking;
     } catch (error) {
       return error;
     }
