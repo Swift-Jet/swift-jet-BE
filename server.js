@@ -16,9 +16,6 @@ const booking = require("./routes/api/v1/booking");
 const flight = require("./routes/api/v1/flight");
 var userProfile;
 
-const csrfProtection = csrf({
-  cookie: true,
-});
 app.use(
   session({
     resave: false,
@@ -31,7 +28,6 @@ app.use(passport.session());
 
 app.use(cors());
 app.use(cookieParser());
-//app.use(csrfProtection);
 app.set("view engine", "ejs");
 
 const server = http.createServer(app);
@@ -64,9 +60,9 @@ passport.deserializeUser(function (obj, cb) {
   cb(null, obj);
 });
 
-// /*  Google AUTH  */
 
-// const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+
+
 // const GOOGLE_CLIENT_ID =
 //   "868391289862-6en8s0um5rppi9evr8oafmsu81mmd09s.apps.googleusercontent.com";
 // const GOOGLE_CLIENT_SECRET = "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";

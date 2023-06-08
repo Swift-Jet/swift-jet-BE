@@ -7,7 +7,6 @@ exports.tokenProvider = (req, res) => {
         process.env.JWT_SECRET,
         { expiresIn: 3600 },
         (err, token) => {
-            console.log("token",token);
          res.json({
             token: token,
             msg: "Token generated successfully"
