@@ -65,4 +65,21 @@ module.exports = class AdminServices {
       return error;
     }
   }
+
+  static async updateBooking(id, data) {
+    console.log(id);
+    try {
+
+      const singleBooking = await Booking.findOne({ _id: id });
+     console.log("singleBooking",singleBooking);
+      const newStatus ={
+        status : data.status
+      }
+      console.log(newStatus);
+      const response = await Booking.findByIdAndUpdate(id, newStatus)
+      return response
+    } catch (error) {
+      return error
+    }
+  }
 };

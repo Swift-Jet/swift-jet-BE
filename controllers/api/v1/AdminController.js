@@ -71,7 +71,6 @@ module.exports = class AdminController {
 
   static async getSingleBooking(req, res) {
     try {
-      console.log("req.query.booking_number",req.query.booking_number);
       const booking_number = req.query.booking_number;
       const response = await AdminServices.getSingleBooking(booking_number);
       return successResponse(res, 200, "Bookings Details fetched", response);
@@ -114,5 +113,16 @@ module.exports = class AdminController {
       console.log(error);
       return errorResponse(res, 500, "Server Error");
     }
+  }
+
+  static async updateStatus(req, res) {
+    try {
+      const id = req.query._id;
+      const response = await AdminServices.updateBooking(id, req.body);
+      return successResponse(res, 200, "Booking status updated", response);
+    } catch (error) {
+      return error
+    }
+
   }
 };
