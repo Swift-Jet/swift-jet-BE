@@ -7,5 +7,6 @@ router.post("/add", AdminController.addAdmin);
 router.get("/summary", AdminController.getDasboardSummary);
 router.get("/single", AdminController.getSingleBooking)
 router.put("/update", AdminController.updateStatus)
+router.post("/login", AdminController.login)
 
-module.exports = router;  
+module.exports = router;   

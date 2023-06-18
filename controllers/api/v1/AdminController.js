@@ -2,6 +2,7 @@ const AdminServices = require("../../../services/AdminServices");
 const { successResponse, errorResponse } = require("../../../utils/responses");
 const bcrypt = require("bcryptjs");
 const logger = require("../../../logger");
+const { log } = require("winston");
 module.exports = class AdminController {
   static async addAdmin(req, res) {
     const { first_name, last_name, email, password, role } = req.body;
@@ -26,8 +27,10 @@ module.exports = class AdminController {
         return errorResponse(res, 400, "Please enter a valid role");
       }
       const lowerEmail = email.toLowerCase();
-
+      console.log("newAdmin", lowerEmail);
       const admin = await AdminServices.getAdminByEmail(lowerEmail);
+
+      console.log("newAdmin", admin);
       if (admin) {
         return errorResponse(res, 400, "Admin with email already exists");
       }
@@ -39,7 +42,7 @@ module.exports = class AdminController {
         password,
         role,
       };
-
+console.log("newAdmin", newAdmin);
       const response = await AdminServices.addAdmin(newAdmin);
       if(response?.errors){
         return errorResponse(res, 500, "An error occured", response);
@@ -90,20 +93,18 @@ module.exports = class AdminController {
       }
 
       const lowerEmail = email.toLowerCase();
-      const user = await AdminServices.getUserByEmail(lowerEmail);
-
+      const user = await AdminServices.getAdminByEmail(lowerEmail);
       if (!user) {
         return errorResponse(res, 401, "Incorrect email or password");
       }
 
-      const isMatch = await bcrypt.compare(password, user.password);
+      const isMatch = password === user.password;
       if (!isMatch) {
         return errorResponse(res, 401, "Incorrect password");
       }
-      const token = user.getSignedJwtToken();
+     // const token = user.getSignedJwtToken();
 
       const payload = {
-        token: token,
         first_name: user.first_name,
         last_name: user.last_name,
         email: user.email,

@@ -75,11 +75,20 @@ module.exports = class AdminServices {
       const newStatus ={
         status : data.status
       }
-      console.log(newStatus);
+     
       const response = await Booking.findByIdAndUpdate(id, newStatus)
       return response
     } catch (error) {
       return error
+    }
+  }
+
+  static async getAdminByEmail(user_email) {
+    try {
+      const singleAdmin = await Admin.findOne({ email: user_email })
+      return singleAdmin;
+    } catch (error) {
+      return error;
     }
   }
 };
