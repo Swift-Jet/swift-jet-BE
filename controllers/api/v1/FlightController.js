@@ -34,7 +34,7 @@ module.exports = class AirportController {
         return errorResponse(res, 400, "Departure date can not be empty");
       }
       if (!departure_time || departure_time === "") {
-        return errorResponse(res, 400, "Departure date can not be empty");
+        return errorResponse(res, 400, "Departure time can not be empty");
       }
       if (!arrival_time || arrival_time === []) {
         return errorResponse(res, 400, "Arrival time can not be empty");
@@ -42,12 +42,7 @@ module.exports = class AirportController {
       if (!aircraft || aircraft === {}) {
         return errorResponse(res, 400, "aircraft can not be empty");
       }
-      if (!created_date || created_date === {}) {
-        return errorResponse(res, 400, "created date can not be empty");
-      }
-      if (!created_by || created_by === "") {
-        return errorResponse(res, 400, "created by can not be empty");
-      }
+    
     //   if (!updated_by || updated_by === "") {
     //     return errorResponse(res, 400, "Updated by can not be empty");
     //   }
@@ -61,7 +56,7 @@ module.exports = class AirportController {
         departure_time,
         arrival_time,
         aircraft,
-        created_date,
+        created_date: Date.now(),
         created_by,
         updated_by,
       };

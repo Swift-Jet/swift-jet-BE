@@ -3,6 +3,7 @@ const User = require("../models/User");
 const Flight = require("../models/Flight");
 const Booking = require("../models/Booking");
 const Aircraft = require("../models/Aircraft")
+const nodemail = require("./../config/nodemailer")
 
 module.exports = class AdminServices {
   static async addAdmin(data) {
@@ -69,13 +70,17 @@ module.exports = class AdminServices {
   static async updateBooking(id, data) {
     console.log(id);
     try {
-
       const singleBooking = await Booking.findOne({ _id: id });
      console.log("singleBooking",singleBooking);
       const newStatus ={
         status : data.status
       }
-     
+     if(data.status === "Processing"){
+      nodemail.bookingInProcess(singleBooking.user.email, singleBooking.booking_number, singleBooking.user.first_name);
+     }
+     if(data.status === "Confirmed"){
+      nodemail.bookingInProcess(singleBooking.user.email, singleBooking.booking_number, singleBooking.user.first_name);
+     }
       const response = await Booking.findByIdAndUpdate(id, newStatus)
       return response
     } catch (error) {

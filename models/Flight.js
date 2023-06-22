@@ -14,11 +14,11 @@ const FlightSchema = new mongoose.Schema({
   inbound_price: {
     type: String,
   },
-  depature_date: {
+  departure_date: {
     type: Date,
   },
   departure_time: {
-    type: Date,
+    type: String,
   },
   arrival_time: {
     type: String,
@@ -33,7 +33,7 @@ const FlightSchema = new mongoose.Schema({
     type: String,
   },
   updated_by: {
-    type: Date,
+    type: String,
   },
 });
 

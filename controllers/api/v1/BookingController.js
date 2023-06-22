@@ -47,7 +47,6 @@ module.exports = class AirportController {
   static async getBookings(req, res) {
     try {
       const response = await BookingServices.getBookings();
-
       return successResponse(res, 200, "Bookings fetched", response);
     } catch (error) {
       return errorResponse(res, 500, "Server Error");
@@ -67,7 +66,6 @@ module.exports = class AirportController {
 
   static async trackBooking(req, res) {
     try {
-      console.log(req.query.booking_number);
       const booking_number = req.query.booking_number;
       const response = await BookingServices.trackBooking(booking_number);
       return successResponse(res, 200, "Tracking details fetched", response);

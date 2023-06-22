@@ -410,3 +410,131 @@ module.exports.bookingRecievedEmail = (email, booking_number, name) => {
     })
     .catch((err) => console.log(err));
 };
+module.exports.bookingInProcess = (email, booking_number, name) => {
+  transport
+    .sendMail({
+      from: "Swift Jet Support",
+      to: email,
+      subject: "We are computing our Available flight options",
+      html: `<html>
+      <head>
+        <meta charset="UTF-8">
+        // <title>Booking Confirmation</title>
+        <style>
+          /* CSS styles */
+          body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #333;
+          }
+          h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            color: #fff;
+            background-color: #881337;
+            padding: 16px;
+            text-align: center;
+          }
+          p {
+            margin: 0 0 16px;
+          }
+          table {
+            border-collapse: collapse;
+            width: 100%;
+          }
+          th, td {
+            padding: 8px;
+            text-align: left;
+            vertical-align: middle;
+          }
+          th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+          }
+          tr:hover {
+            background-color: #f5f5f5;
+          }
+          a {
+            color: #881337;
+            text-decoration: none;
+          }
+          a:hover {
+            text-decoration: underline;
+          }
+          .button {
+            display: inline-block;
+            padding: 8px 16px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #881337;
+            border-radius: 4px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s;
+          }
+          .button:hover {
+            background-color: #881337;
+          }
+          .footer {
+            background-color: #f2f2f2;
+            color: #666;
+            font-size: 14px;
+            padding: 16px;
+            text-align: center;
+          }
+          .footer a {
+            color: #333;
+            text-decoration: none;
+          }
+          .footer a:hover {
+            text-decoration: underline;
+          }
+          .tracking-link{
+            text-align:center;
+          }
+        </style>
+      </head>
+      <body>
+        <h1 style="background-color: #881337; color: #fff; padding: 16px; text-align: center;">Booking Confirmation</h1>
+        <p>Dear ${name},</p>
+        <p>Your booking is currently being processed, and we are checking our available flight options to serve you best</p>
+        <br>
+        <br>
+        <br>
+        <table>
+          <tr>
+            <th style="background-color: #f2f2f2; font-weight: bold;">Your flight booking number is ${booking_number}</th>
+            <td></td>
+          </tr>
+        </table>
+        <br>
+        <br>
+        <br>
+        <p>Please keep this email as your receipt for the booking. If you have any questions or concerns, please contact us at <a href="mailto:support@swiftwings.com">support@swiftwings.com</a>.</p>
+        <p>To track your booking, please click the button below:</p>
+        <p class="tracking-link"><a href="[Tracking URL]" class="button" style="background-color: #881337; color: #fff; display: inline-block; font-size: 16px; font-weight: bold; padding: 8px 16px; text-align: center; text-decoration
+        :none; border-radius: 4px;">Track Booking</a></p>
+        <br>
+        <br>
+        <br>
+        <div class="footer">
+        <p>Thank you for choosing SwiftWings!</p>
+        <p>If you have any questions, please contact us at <a href="mailto:support@swiftwings.com">support@swiftwings.com</a>.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms and Conditions</a></p>
+        </div>
+        
+          </body>
+        </html>
+    
+    
+    
+    `,
+    })
+    .catch((err) => console.log(err));
+};
