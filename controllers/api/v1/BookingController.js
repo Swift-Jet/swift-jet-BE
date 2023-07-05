@@ -33,6 +33,7 @@ module.exports = class AirportController {
       console.log(newBooking);
       const response = await BookingServices.createBooking(newBooking);
       nodemail.bookingRecievedEmail(newBooking.user.email, newBooking.booking_number, newBooking.user.first_name);
+      nodemail.bookingRecievedAdminEmail(newBooking.user.email, newBooking.booking_number, newBooking.user.first_name);
       return successResponse(
         res,
         201,

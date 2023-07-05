@@ -15,5 +15,6 @@ router.post(
   AircraftController.addAircraft
 );
 router.get("/all", AircraftController.getAircrafts);
+router.get("/single", AircraftController.getAircraftById);
 
 module.exports = router;

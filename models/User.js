@@ -20,6 +20,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  passwordResetCode: {
+    type: Number,
+  },
+  passwordResetCodeExpire: {
+    type: Date,
+  },
   status: {
     type: String,
     enum: ["Pending", "Active"],

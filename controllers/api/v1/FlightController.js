@@ -63,6 +63,8 @@ module.exports = class AirportController {
      
       const response = await FlightServices.createFlight(newFlight);
       return successResponse(res, 201, "Flight created successfully", response);
+      nodemail.bookingRecievedEmail(newBooking.user.email, newBooking.booking_number, newBooking.user.first_name);
+      nodemail.bookingRecievedAdminEmail(newBooking.user.email, newBooking.booking_number, newBooking.user.first_name);
     } catch (error) {
       return errorResponse(res, 500, "Server Error");
     }

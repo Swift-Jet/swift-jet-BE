@@ -1,7 +1,8 @@
 const UserServices = require("../../../services/UserServices");
 const { successResponse, errorResponse } = require("../../../utils/responses");
-const nodemail = require('./../../../config/nodemailer')
+const nodemail = require("./../../../config/nodemailer");
 const bcrypt = require("bcryptjs");
+const User = require("../../../models/User");
 module.exports = class UserController {
   static async signUp(req, res) {
     const { first_name, last_name, email, password } = req.body;
@@ -43,24 +44,23 @@ module.exports = class UserController {
         password,
         confirmationCode,
       };
-   
+
       const response = await UserServices.signUp(newUser);
-      console.log("newUser", response);
-      if(response?.errors){
+
+      if (response?.errors) {
         return errorResponse(res, 500, "An error occured", response);
       }
       nodemail.sendConfirmationEmail(
         newUser.first_name,
         newUser.email,
-        newUser.confirmationCode,
-      )
+        newUser.confirmationCode
+      );
       return successResponse(res, 201, "User account created", response);
     } catch (error) {
       console.log(error);
       return errorResponse(res, 500, "Server Error");
     }
   }
- 
 
   static async getUsers(req, res) {
     try {
@@ -73,7 +73,7 @@ module.exports = class UserController {
 
   static async login(req, res) {
     const { email, password } = req.body;
-    console.log(email);
+
     try {
       if (!email || email === "") {
         return errorResponse(res, 400, "Please enter your email");
@@ -89,7 +89,6 @@ module.exports = class UserController {
         return errorResponse(res, 401, "Incorrect email or password");
       }
 
-
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
         return errorResponse(res, 401, "Incorrect password");
@@ -102,11 +101,76 @@ module.exports = class UserController {
         last_name: user.last_name,
         email: user.email,
       };
-    //  res.cookie('token', token, { httpOnly: true });
+      //  res.cookie('token', token, { httpOnly: true });
       return successResponse(res, 200, "Login successful", payload);
     } catch (error) {
-    console.log(error);
+      console.log(error);
       return errorResponse(res, 500, "Server Error");
     }
+  }
+
+  static async forgotPassword(req, res) {
+    const { email } = req.body;
+    try {
+      if (!email || email === "") {
+        return errorResponse(res, 400, "Please enter your email");
+      }
+
+      let user;
+
+      const lowerEmail = email.toLowerCase();
+      user = await UserServices.getUserByEmail(lowerEmail);
+
+      if (!user) {
+        return errorResponse(
+          res,
+          400,
+          "User with email does not exist on our platform"
+        );
+      }
+
+      let expiresIn = new Date();
+      expiresIn.setMinutes(expiresIn.getMinutes() + 10);
+      const verification_code = Math.floor(100000 + Math.random() * 900000);
+      user.passwordResetCode = verification_code;
+      user.passwordResetCodeExpire = expiresIn;
+      user.save();
+
+      nodemail.forgotPasswordEmail(
+        user.first_name,
+        user.email,
+        verification_code
+      );
+
+      return successResponse(
+        res,
+        201,
+        "Kindly check your email for a confirmation code",
+        user.email
+      );
+    } catch (error) {
+      return errorResponse(res, 500, "Server Error");
+    }
+  }
+
+  static async resetPassword(req, res) {
+    const { password, token } = req.body;
+    User.findOne({
+      passwordResetCode: token,
+    })
+      .then((user) => {
+        if (!user) {
+          return res
+            .status(404)
+            .send({ message: "We can't verify your reset code" });
+        } else {
+          user.password = password;
+          user.save();
+          return res
+            .status(200)
+            .send({ message: "Password changed successfully" });
+        }
+      })
+      .catch((e) => console.log("error", e));
   }
 };

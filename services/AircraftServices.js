@@ -16,9 +16,6 @@ module.exports = class AircraftServices {
         overview_summary: data.overview_summary,
         image_url: data.image_url,
         image_url_2: data.image_url_2,
-        image_url_3: data.image_url_3,
-        image_url_4: data.image_url_4,
-        image_url_5: data.image_url_5,
       };
       const response = await new Aircraft(newAircraft).save();
       return response;
@@ -31,6 +28,17 @@ module.exports = class AircraftServices {
   static async getAircrafts() {
     try {
       const response = await Aircraft.find();
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+
+
+  static async getAircraftById(id) {
+    try {
+      const query = { _id: id };      
+      const response = await Aircraft.find(query);
       return response;
     } catch (error) {
       return error;

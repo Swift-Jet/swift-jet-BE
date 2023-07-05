@@ -1,3 +1,4 @@
+const { datetimeString } = require("firebase-tools/lib/utils");
 const mongoose = require("mongoose");
 const BookingSchema = new mongoose.Schema({
   booking_number: {
@@ -20,6 +21,10 @@ const BookingSchema = new mongoose.Schema({
   additional_quote: {
     type: Array,
   },
+  created_date: {
+    type: Date,
+    default : Date.now()
+  }
 });
 
 module.exports = mongoose.model("Booking", BookingSchema);

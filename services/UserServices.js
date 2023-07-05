@@ -1,4 +1,6 @@
 const User = require("../models/User");
+const bcrypt = require("bcryptjs");
+const crypto = require("crypto");
 module.exports = class UserServices {
   static async signUp(data) {
     try {
@@ -9,6 +11,17 @@ module.exports = class UserServices {
         password: data.password,
         status: data.status,
         confirmationCode: data.confirmationCode,
+      };
+      const response = await new User(newUser).save();
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+  static async resetPassword(data) {
+    try {
+      const newUser = {
+        password: data.password,
       };
       const response = await new User(newUser).save();
       return response;
