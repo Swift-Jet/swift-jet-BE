@@ -1,4 +1,3 @@
-const { datetimeString } = require("firebase-tools/lib/utils");
 const mongoose = require("mongoose");
 const BookingSchema = new mongoose.Schema({
   booking_number: {
