@@ -18,6 +18,8 @@ module.exports = class AircraftController {
     } = req.body;
     const image_url = req.files.image_url[0].path;
     const image_url_2 = req.files.image_url_2[0].path;
+    const image_url_3 = req.files.image_url_3[0].path;
+    const image_url_4 = req.files.image_url_4[0].path;
     
 
     try {
@@ -70,6 +72,8 @@ module.exports = class AircraftController {
         sjac_code,
         image_url,
         image_url_2,
+        image_url_3,
+        image_url_4
      
       };
       const response = await AircraftServices.createAircraft(newAircraft);

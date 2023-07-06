@@ -16,6 +16,8 @@ module.exports = class AircraftServices {
         overview_summary: data.overview_summary,
         image_url: data.image_url,
         image_url_2: data.image_url_2,
+        image_url_3: data.image_url_3,
+        image_url_4: data.image_url_4,
       };
       const response = await new Aircraft(newAircraft).save();
       return response;
