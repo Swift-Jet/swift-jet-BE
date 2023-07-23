@@ -7,14 +7,17 @@ module.exports = class AirportController {
     const { user, booking_details, additional_quote, status, email } = req.body;
 
     try {
-      if (!user || user === {}) {
+      if (!user) {
         return errorResponse(res, 400, "User details can not be empty");
       }
       if (!status || status === "") {
         return errorResponse(res, 400, "Status can not be empty");
       }
-      if (!booking_details || booking_details === []) {
-        return errorResponse(res, 400, "Booking details can not be emptyn");
+      if (!booking_details){
+        return errorResponse(res, 400, "Booking details can not be empty");
+      }
+      if (additional_quote.length === 0 && booking_details.tripType != "Shared") {
+        return errorResponse(res, 400, "Please add least one quote");
       }
       const characters = "0123456789";
       let code = "SW";
@@ -30,7 +33,6 @@ module.exports = class AirportController {
         additional_quote,
         status,
       };
-      console.log(newBooking);
       const response = await BookingServices.createBooking(newBooking);
       nodemail.bookingRecievedEmail(newBooking.user.email, newBooking.booking_number, newBooking.user.first_name);
       nodemail.bookingRecievedAdminEmail(newBooking.user.email, newBooking.booking_number, newBooking.user.first_name);
@@ -56,7 +58,6 @@ module.exports = class AirportController {
 
   static async getBookingByEmail(req, res) {
     try {
-      console.log(req.query.email);
       const email = req.query.email;
       const response = await BookingServices.getBookingByEmail(email);
       return successResponse(res, 200, "User Bookings fetched", response);

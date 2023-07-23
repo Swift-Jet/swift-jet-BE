@@ -21,7 +21,6 @@ module.exports = class AirportServices {
   static async getBookings() {
     try {
       const response = await Booking.find().sort({created_date: -1});
-      console.log(response);
       return response;
     } catch (error) {
       return error;

@@ -14,7 +14,18 @@ router.post(
   ]),
   AircraftController.addAircraft
 );
+router.put(
+  "/update/:id",
+  parser.fields([
+    { name: "image_url", maxCount: 1 },
+    { name: "image_url_2", maxCount: 1 },
+    { name: "image_url_3", maxCount: 1 },
+    { name: "image_url_4", maxCount: 1 },
+    { name: "image_url_5", maxCount: 1 },
+  ]),
+  AircraftController.updateAircraft
+);
 router.get("/all", AircraftController.getAircrafts);
 router.get("/single", AircraftController.getAircraftById);
-
+router.delete("/delete/:id", AircraftController.deleteAircraftById);
 module.exports = router;

@@ -111,7 +111,6 @@ console.log("newAdmin", newAdmin);
       };
       return successResponse(res, 200, "Login successful", payload);
     } catch (error) {
-      console.log(error);
       return errorResponse(res, 500, "Server Error");
     }
   }

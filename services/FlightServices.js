@@ -1,3 +1,4 @@
+const { log } = require("winston");
 const Flight = require("../models/Flight");
 
 module.exports = class FlightServices {
@@ -29,6 +30,42 @@ module.exports = class FlightServices {
       return response;
     } catch (error) {
       return error;
+    }
+  }
+
+  static async getFlightById(id) {
+    try {
+      const query = { _id: id };      
+      const response = await Flight.find(query);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+  
+  static async deleteFlightById(id){
+    try {
+      const query = { _id: id }; 
+      const response = await Flight.findByIdAndDelete(query);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+  static async updateFlight(id, data) {
+    try {
+     
+  
+      const response = await Flight.findByIdAndUpdate(
+        id,
+        data,
+        { new: true }
+      );
+  
+      return response;
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Internal server error" });
     }
   }
 };

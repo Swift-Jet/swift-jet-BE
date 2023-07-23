@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const FlightSchema = new mongoose.Schema({
   flight_type: {
     type: String,
-    enum: ["Deals", "Shared"],
+    enum: ["Empty Leg", "Shared"],
     default: "Shared",
   },
   destination_airport: {

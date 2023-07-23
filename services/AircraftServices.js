@@ -46,4 +46,31 @@ module.exports = class AircraftServices {
       return error;
     }
   }
+
+  static async deleteAircraftById(id){
+    try {
+      const query = { _id: id };    
+      const response = await Aircraft.findByIdAndDelete(query);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  static async updateAircraft(id, data) {
+    try {
+     
+  
+      const response = await Aircraft.findByIdAndUpdate(
+        id,
+        data,
+        { new: true }
+      );
+  
+      return response;
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  }
 };

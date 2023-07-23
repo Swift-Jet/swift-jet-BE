@@ -78,4 +78,71 @@ module.exports = class AirportController {
       return errorResponse(res, 500, "Server Error");
     }
   }
+  static async getFlightById(req, res) {
+    try {
+      const id = req.query.id;
+      const response = await FlightServices.getFlightById(id)
+      return successResponse(res, 200, "Flight Details fetched", response);
+    } catch (error) {
+      return errorResponse(res, 500, "Server Error");
+    }
+  }
+
+  static async deleteFlightById(req, res) {
+    try {
+      const { id } = req.params;
+      const response = await FlightServices.deleteFlightById(id);
+      
+      return successResponse(res, 200, "Flight deleted successfully", response);
+    } catch (error) {
+      return errorResponse(res, 500, "Server Error");
+    }
+  }
+
+  static async updateAircraft(req, res) {
+    let {
+      flight_type,
+      destination_airport,
+      departure_airport,
+      inbound_price,
+      departure_date,
+      departure_time,
+      arrival_time,
+      aircraft,
+      created_date,
+      created_by,
+      updated_by,
+    } = req.body;
+    
+    const { id } = req.params;
+
+    try {
+
+      const newFlight = {
+        flight_type,
+        destination_airport,
+        departure_airport,
+        inbound_price,
+        departure_date,
+        departure_time,
+        arrival_time,
+        aircraft,
+        created_date: Date.now(),
+        created_by,
+        updated_by,
+      };
+
+      
+      const response = await FlightServices.updateFlight(id, newFlight);
+
+      return successResponse(
+        res,
+        201,
+        "Updated flight successfully",
+        response
+      );
+    } catch (error) {
+      return errorResponse(res, 500, "Server Error");
+    }
+  }
 };

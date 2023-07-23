@@ -57,7 +57,6 @@ module.exports = class UserController {
       );
       return successResponse(res, 201, "User account created", response);
     } catch (error) {
-      console.log(error);
       return errorResponse(res, 500, "Server Error");
     }
   }
@@ -104,7 +103,6 @@ module.exports = class UserController {
       //  res.cookie('token', token, { httpOnly: true });
       return successResponse(res, 200, "Login successful", payload);
     } catch (error) {
-      console.log(error);
       return errorResponse(res, 500, "Server Error");
     }
   }

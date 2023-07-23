@@ -68,10 +68,8 @@ module.exports = class AdminServices {
   }
 
   static async updateBooking(id, data) {
-    console.log(id);
     try {
       const singleBooking = await Booking.findOne({ _id: id });
-     console.log("singleBooking",singleBooking);
       const newStatus ={
         status : data.status
       }
