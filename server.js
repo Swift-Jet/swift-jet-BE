@@ -14,6 +14,8 @@ const user = require("./routes/api/v1/user");
 const admin = require("./routes/api/v1/admin");
 const booking = require("./routes/api/v1/booking"); 
 const flight = require("./routes/api/v1/flight");
+const subscribe = require("./routes/api/v1/subscribe");
+const enquiry = require("./routes/api/v1/enquiry");
 var userProfile;
 
 app.use(
@@ -111,6 +113,8 @@ app.use("/api/v1/user", user);
 app.use("/api/v1/admin", admin);
 app.use("/api/v1/booking", booking);
 app.use("/api/v1/flight", flight);
+app.use("/api/v1/subscribe", subscribe);
+app.use("/api/v1/enquiry", enquiry);
 const PORT = process.env.PORT || 8000;
 
 server.listen(PORT, () => {

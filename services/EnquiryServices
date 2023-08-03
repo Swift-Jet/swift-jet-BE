@@ -1,0 +1,28 @@
+const Enquiry = require("../models/enquiry");
+
+module.exports = class EnquiryServices {
+
+  static async makeEnquiry(data) {
+    try {
+      const newEnquiry = {
+        email: data.email,
+        name:data.number,
+        number:data.number,
+        enquiry:data.enquiry
+      };
+      const response = await new Enquiry(newEnquiry).save();
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  static async getEnquiry() {
+    try {
+      const response = await Enquiry.find();
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+};
