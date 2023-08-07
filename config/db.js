@@ -8,12 +8,13 @@ module.exports.connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
- 
+ console.log("staging db connected");
   } else if (process.env.NODE_ENV === "production") {
     mongoose.connect("mongodb+srv://Babajide:Maythird1.!@cluster0.azxmr.mongodb.net/swift-jet-staging-db?retryWrites=true&w=majority", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
+    console.log("production db connected");
    
   } else {
     mongoose.connect("mongodb+srv://Babajide:Maythird1.!@cluster0.azxmr.mongodb.net/swift-jet-staging-db?retryWrites=true&w=majority", {

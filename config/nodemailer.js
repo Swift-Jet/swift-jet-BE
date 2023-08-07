@@ -10,7 +10,6 @@ const transport = nodemailer.createTransport({
 });
 
 module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
-  console.log("Check", name, email);
   transport
     .sendMail({
       from: "Swift Jet Support",
@@ -321,7 +320,7 @@ module.exports.bookingInProcess = (email, booking_number, name) => {
       html: `<html>
       <head>
         <meta charset="UTF-8">
-        // <title>Booking Confirmation</title>
+         <title>Booking Confirmation</title>
         <style>
           /* CSS styles */
           body {
@@ -444,7 +443,7 @@ module.exports.bookingRecievedAdminEmail = (email, booking_number, name) => {
   transport
     .sendMail({
       from: "Swift Jet Support",
-      to: "fly@swiftwingsjet.com",
+      to: "charter@swiftwingsjet.com",
       subject: "New Flight Booking",
       html: `<html>
       <head>
